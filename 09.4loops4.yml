@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+   - name: Creating the Users
+     user:
+      name: "{{item}}"
+      create_home: yes
+    with_items:
+      - rajani
+      - rama

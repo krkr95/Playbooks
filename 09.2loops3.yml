@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true
+  tasks:
+   - name: Install the Packages
+     yum: 
+      name: ['git', 'maven', 'zip', 'unzip', 'vim', 'wget']
+      state: present
+...

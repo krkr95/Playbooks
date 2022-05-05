@@ -1,0 +1,31 @@
+---
+- hosts: all
+  #gather_facts: no
+  become: true
+  tasks: 
+   - name: Install the Apache HTTP Server on Redhat Server
+     yum:
+      name: httpd
+      state: present
+     when: ansible_os_family == "RedHat"
+   - name: Install the Apache HTTP Server on CentOS Server
+     yum:
+      name: httpd
+      state: present
+     when: ansible_os_family == "CentOS"
+   - name: Install the Apache HTTP Server on Ubuntu Server
+     apt:
+      name: apache2
+      state: present
+     when: ansible_os_family == "Ubuntu"
+   - name: Install the Apache HTTP Server on Debian Server
+     apt:
+      name: apache2
+      state: present
+     when: 
+      - ansible_facts['distribution'] == "Debian"
+      - ansible_facts['distribution_major_version'] == "6"
+   - name: Shutdown Ubuntu 6 and Debian 6 Servers
+     command: /sbin/shutdown -t now
+     when: (ansible_facts['distribution'] == "Ubuntu" and ansible_facts['distribution_major_version'] == "6") or
+           (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "6")

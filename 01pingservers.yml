@@ -1,0 +1,9 @@
+---
+- hosts: all
+  gather_facts: yes
+  remote_user: ansible
+  tasks:
+  - name: Ping all the Servers
+    ping:
+    remote_user: ec2-user
+...

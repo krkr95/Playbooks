@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install the Packages
+      yum:
+        name: "{{item}}"
+        state: present
+      with_items:
+        - git
+        - maven
+        - zip
+        - unzip
+        - vim
+        - wget

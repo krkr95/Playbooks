@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Creating file
+    file:
+     path: /home/ec2-user/mss.yml
+     state: touch
+     owner: ec2-user
+     group: wheel
+     mode: '0777'
+...
