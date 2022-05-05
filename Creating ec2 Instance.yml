@@ -1,0 +1,21 @@
+- name: Create a sandbox instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+    keypair: centos
+    instance_type: t2.micro
+    security_group: CentOS 7 -x86_64- - with Updates HVM-2003_01-AutogenByAWSMP-5
+    image: ami-02cae3195fa1622a8
+    region: us-east-2
+  tasks:
+    - name: Launch instance
+      ec2:
+         key_name: "{{keypair}}"
+         group: "{{security_group}}"
+         instance_type: t2.micro
+         image: "{{image}}"
+         wait: true
+         region: "{{region}}"
+         vpc_subnet_id: subnet-06e90eff1577797a5
+         assign_public_ip: yes
+      register: ec2

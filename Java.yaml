@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+
+  - name: Install Packages
+    yum: name={{item}} update_cache=yes state=latest
+    with_items:
+      - java
